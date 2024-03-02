@@ -18,12 +18,14 @@ import { ExternalApiComponent } from './pages/external-api/external-api.componen
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { environment as env } from '../environments/environment';
-
+import { CommonModule } from '@angular/common';
+import { ProjectsComponent } from './pages/projects/projects.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ProfileComponent,
+    ProjectsComponent,
     NavBarComponent,
     FooterComponent,
     HeroComponent,
@@ -34,6 +36,7 @@ import { environment as env } from '../environments/environment';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
