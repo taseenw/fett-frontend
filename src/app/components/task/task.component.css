@@ -1,0 +1,14 @@
+.indented {
+    padding-left: 20px; /* Adjust the value as needed */
+  }
+
+.sidenav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100%;
+    background-color: #f0f0f0;
+    overflow-x: hidden;
+    transition: 0.5s;
+  }

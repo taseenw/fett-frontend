@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,12 +21,14 @@ import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { environment as env } from '../environments/environment';
 import { CommonModule } from '@angular/common';
 import { ProjectsComponent } from './pages/projects/projects.component';
+import { TaskComponent } from './components/task/task.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ProfileComponent,
     ProjectsComponent,
+    TaskComponent,
     NavBarComponent,
     FooterComponent,
     HeroComponent,
@@ -42,6 +45,7 @@ import { ProjectsComponent } from './pages/projects/projects.component';
     NgbModule,
     HighlightModule,
     FontAwesomeModule,
+    FormsModule,
     AuthModule.forRoot({
       ...env.auth,
       httpInterceptor: {

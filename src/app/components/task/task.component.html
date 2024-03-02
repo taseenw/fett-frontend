@@ -1,0 +1,23 @@
+<br>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ task.name }}</h5>
+        <p class="card-text">Description: {{ task.description }}</p>
+        <p class="card-text">Assignees: {{ task.assignees }}</p>
+        <p class="card-text">Status: {{ task.status }}</p>
+        <p class="card-text">Due Date (YYYY/MM/DD): {{ task.dueDate }}</p>
+        <p class="card-text">Priority: {{ task.priority }}</p>
+        <p class="card-text">Comments:</p>
+        <ol>
+            <div *ngFor="let comment of comments">
+                <li class = "indented card-text">{{ comment }}</li>
+            </div>
+        </ol>
+
+        <input id="commentInput" type="text" class="form-control" placeholder="Comments..." style="color: gray; width: 90%;" [(ngModel)]="comment" required>
+        <br><br>
+        <button type="submit" class="btn btn-primary" [disabled] = "comment.length < 1" (click)="uploadComment(comment)">Publish Comment</button>
+
+        
+    </div>
+</div>
