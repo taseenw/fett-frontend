@@ -8,7 +8,7 @@ const authConfig = require('./auth_config.json');
 const app = express();
 
 if (
-  !authConfig.domain ||
+  !authConfig.domain || 
   !authConfig.authorizationParams.audience ||
   ["YOUR_API_IDENTIFIER", "{yourApiIdentifier}"].includes(authConfig.authorizationParams.audience)
 ) {
