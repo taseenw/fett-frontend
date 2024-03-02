@@ -23,6 +23,7 @@ export class NavBarComponent {
   }
 
   logout() {
+    console.log(this.doc.location.origin)
     this.auth.logout({ logoutParams: { returnTo: this.doc.location.origin } });
   }
 }
