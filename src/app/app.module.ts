@@ -22,6 +22,8 @@ import { environment as env } from '../environments/environment';
 import { CommonModule } from '@angular/common';
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { TaskComponent } from './components/task/task.component';
+import { ProjectComponent } from './pages/projects/project/project.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +31,7 @@ import { TaskComponent } from './components/task/task.component';
     ProfileComponent,
     ProjectsComponent,
     TaskComponent,
+    ProjectComponent,
     NavBarComponent,
     FooterComponent,
     HeroComponent,

@@ -9,6 +9,7 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   ping$() {
-    return this.http.get(`${config.apiUri}/api/external`);
+    console.log(config.apiUri)
+    return this.http.get(`${config.apiUri}/external`);
   }
 }
