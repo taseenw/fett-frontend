@@ -1,0 +1,33 @@
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <h1>{{ project.name }}</h1>
+        <hr>
+  
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Project Details</h5>
+            <p class="card-text"><strong>Description:</strong> {{ project.description }}</p>
+            <p class="card-text"><strong>Status:</strong> {{ project.status }}</p>
+            <p class="card-text"><strong>Owner:</strong> {{ project.owner }}</p>
+          </div>
+        </div>
+  
+        <div class="card mt-3">
+          <div class="card-body">
+            <h5 class="card-title">Assignees</h5>
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let assignee of project.assignees">{{ assignee }}</li>
+            </ul>
+          </div>
+        </div>
+  
+        <div class="card mt-3">
+          <div class="card-body">
+            <h5 class="card-title">Tasks</h5>
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let task of project.tasks">{{ task }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  </div>

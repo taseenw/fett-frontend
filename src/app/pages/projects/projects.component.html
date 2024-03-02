@@ -1,0 +1,10 @@
+<h1>Projects</h1>
+<hr>
+<div *ngFor="let project of projects">
+    <div class="card mb-2">
+    <div class="card-body" [routerLink]="['/projects', project.id]" style="cursor: pointer;">
+        <h5 class="card-title">{{ project.name }}</h5>
+        <p class="card-text">{{ project.auth }}</p>
+    </div>
+    </div>
+</div>
