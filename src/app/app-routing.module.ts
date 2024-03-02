@@ -6,6 +6,7 @@ import { ExternalApiComponent } from './pages/external-api/external-api.componen
 import { ErrorComponent } from './pages/error/error.component';
 import { AuthGuard } from '@auth0/auth0-angular';
 import { ProjectsComponent } from './pages/projects/projects.component';
+import { ProjectComponent } from './pages/projects/project/project.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,11 @@ const routes: Routes = [
   {
     path: 'projects',
     component: ProjectsComponent,
+    // canActivate: [AuthGuard],
+  },
+  {
+    path: 'projects/:projectId',
+    component: ProjectComponent,
     // canActivate: [AuthGuard],
   }
 ];

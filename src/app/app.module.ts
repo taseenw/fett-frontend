@@ -20,12 +20,15 @@ import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { environment as env } from '../environments/environment';
 import { CommonModule } from '@angular/common';
 import { ProjectsComponent } from './pages/projects/projects.component';
+import { ProjectComponent } from './pages/projects/project/project.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ProfileComponent,
     ProjectsComponent,
+    ProjectComponent,
     NavBarComponent,
     FooterComponent,
     HeroComponent,
