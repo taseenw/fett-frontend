@@ -1,6 +1,8 @@
 <h1>Projects</h1>
 <hr>
-<button class="btn btn-primary" [routerLink]="['/project/add']">Add Project</button>
+
+<button type="button" class="btn btn-primary mb-2" [routerLink]="['/project/add']">Add Project</button>
+
 <div *ngFor="let project of projects">
     <div class="card mb-2">
     <div class="card-body" [routerLink]="['/projects', project.id]" style="cursor: pointer;">
