@@ -6,11 +6,12 @@ const { auth } = require('express-oauth2-jwt-bearer');
 const authConfig = require('./auth_config.json');
 
 const app = express();
-
+console.log(authConfig.domain, authConfig.authorizationParams.audience,   ["dev-wc1zplgrutehmeut.us.auth0.com","http://localhost:8080/auth"].includes(authConfig.authorizationParams.audience))
 if (
   !authConfig.domain || 
   !authConfig.authorizationParams.audience ||
-  ["YOUR_API_IDENTIFIER", "{yourApiIdentifier}"].includes(authConfig.authorizationParams.audience)
+  !["dev-wc1zplgrutehmeut.us.auth0.com","http://localhost:8080/auth"].includes(authConfig.authorizationParams.audience)
+  //["YOUR_API_IDENTIFIER", "{yourApiIdentifier}"].includes(authConfig.authorizationParams.audience)
 ) {
   console.log(
     "Exiting: Please make sure that auth_config.json is in place and populated with valid domain and audience values"

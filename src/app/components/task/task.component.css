@@ -1,0 +1,50 @@
+.indented {
+    padding-left: 20px; /* Adjust the value as needed */
+  }
+
+/* Define the keyframes animation for opening (right to left) */
+@keyframes slideInRightToLeft {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Define the keyframes animation for closing (left to right) */
+@keyframes slideOutLeftToRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.sidenav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 500px; /* Adjust the width as needed */
+    height: 100%; /* Make it cover the entire height of the screen */
+    background-color: #f0f0f0; /* Optionally style the background color */
+    overflow-y: auto; /* Allow scrolling if the content exceeds the height */
+    z-index: 1000; /* Make it appear above other content */
+    padding: 20px; /* Optional padding */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional shadow effect */
+    overflow-y: auto;
+    transition: transform 0.5s ease-in-out; /* Add a transition for smooth animation */
+    animation: slideInRightToLeft 0.5s ease-in-out; /* Apply the animation */
+}
+
+
+/* Apply the opening animation */
+.sidenav.open {
+  animation-name: slideInRightToLeft;
+}
+
+/* Apply the closing animation */
+.sidenav.close {
+  animation-name: slideOutLeftToRight;
+}

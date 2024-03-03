@@ -1,0 +1,32 @@
+<br>
+<div class="card sidenav">
+    <div class="card-body">
+        <button type="button" class="close" aria-label="Close" (click) = "onClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="card-title">{{ passedTask.name }}</h5>
+        <p class="card-text">Description: {{ passedTask.description }}</p>
+        <p class="card-text">Assignees:</p>
+        <ul>
+            <div *ngFor="let assignee of assignees">
+                <li class = "indented card-text">{{ assignee }}</li>
+            </div>
+        </ul>
+        <p class="card-text">Status: {{ passedTask.status }}</p>
+        <p class="card-text">Due Date (YYYY/MM/DD): {{ passedTask.dueDate }}</p>
+        <p class="card-text">Priority: {{ passedTask.priority }}</p>
+        <p class="card-text">Comments:</p>
+        <ol>
+            <div *ngFor="let comment of comments">
+                <li class = "indented card-text">{{ comment }}</li>
+            </div>
+        </ol>
+
+        <input id="commentInput" type="text" class="form-control" placeholder="Comments..." style="color: gray; width: 90%;" [(ngModel)]="comment" required>
+        <br><br>
+        <button type="submit" class="btn btn-primary" [disabled] = "comment.length < 1" (click)="uploadComment(comment)">Publish Comment</button>
+
+        
+    </div>
+    
+</div>
