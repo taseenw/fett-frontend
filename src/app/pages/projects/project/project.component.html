@@ -6,7 +6,7 @@
   
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Project Details</h5>
+            <h2 class="card-title">Project Details</h2>
             <p class="card-text"><strong>Description:</strong> {{ project.description }}</p>
             <p class="card-text"><strong>Status:</strong> {{ project.status }}</p>
             <p class="card-text"><strong>Owner:</strong> {{ project.owner }}</p>
@@ -15,7 +15,7 @@
   
         <div class="card mt-3">
           <div class="card-body">
-            <h5 class="card-title">Assignees</h5>
+            <h2 class="card-title">Assignees</h2>
             <ul class="list-group">
               <li class="list-group-item" *ngFor="let assignee of project.assignees">{{ assignee }}</li>
             </ul>
@@ -24,7 +24,12 @@
   
         <div class="card mt-3">
           <div class="card-body">
-            <h5 class="card-title">Tasks</h5>
+            
+            <h2 class="card-title d-flex justify-content-end">Tasks
+              <div class="ml-auto">
+                <button type="button" class="btn btn-danger " (click) = "returnToParent()">Back</button>
+              </div>
+            </h2>
             <ul class="list-group">
               <div  *ngFor="let task of project.tasks">
                 <li class="list-group-item" (click) = "taskSideNav(task)">{{ task.name }}</li>
@@ -34,6 +39,6 @@
         </div>
       </div>
   </div>
-  <div *ngIf="selectedTask">
+  <div *ngIf="showSideBar">
     <app-task [passedTask] = "selectedTask" (close)="onCloseTask()"></app-task>
   </div>
