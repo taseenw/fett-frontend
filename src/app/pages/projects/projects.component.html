@@ -5,9 +5,9 @@
 
 <div *ngFor="let project of projects">
     <div class="card mb-2">
-    <div class="card-body" [routerLink]="['/projects', project.id]" style="cursor: pointer;">
+    <div class="card-body" [routerLink]="['/projects', project._id]" style="cursor: pointer;">
         <h5 class="card-title">{{ project.name }}</h5>
-        <p class="card-text">{{ project.auth }}</p>
+        <p class="card-text">{{ project.group }}</p>
     </div>
     </div>
 </div>

@@ -9,6 +9,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatChipGrid } from '@angular/material/chips';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { MatSelect } from '@angular/material/select';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -64,6 +67,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
+    MatChipsModule,
+    MatChipGrid,
     MatFormFieldModule,
     AuthModule.forRoot({
       ...env.auth,
