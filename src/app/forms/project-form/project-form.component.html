@@ -1,0 +1,44 @@
+<div class="container mt-5">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <h1>{{pageTitle}}</h1>
+        <hr>
+  
+        <form (ngSubmit)="validSubmit()" [formGroup]="projectsForm">
+
+          <mat-form-field class="form-group">
+            <mat-label>Project Name*</mat-label>
+            <input matInput id="name" formControlName="name" required>
+          </mat-form-field>
+    
+          <!-- Description -->
+          <mat-form-field class="form-group">
+            <mat-label>Description*</mat-label>
+            <textarea matInput id="description" formControlName="description" rows="3" required></textarea>
+          </mat-form-field>
+    
+          <!-- Status -->
+          <mat-form-field class="form-group">
+            <mat-label>Status*</mat-label>
+            <input matInput id="status" formControlName="status" required>
+          </mat-form-field>
+    
+          <!-- Owner -->
+          <mat-form-field class="form-group">
+            <mat-label>Owner*</mat-label>
+            <input matInput id="owner" formControlName="owner" required>
+          </mat-form-field>
+    
+          <!-- Assignees -->
+          <mat-form-field class="form-group">
+            <mat-label>Assignees</mat-label>
+            <input matInput id="assignees" formControlName="assignees">
+          </mat-form-field>
+    
+          <button mat-button color="primary" type="submit" [disabled]="projectsForm.invalid">Submit</button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+  
