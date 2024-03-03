@@ -9,6 +9,8 @@ import { ProjectsComponent } from './pages/projects/projects.component';
 import { ProjectComponent } from './pages/projects/project/project.component';
 import { ProjectAddComponent } from './pages/projects/project-add/project-add.component';
 import { ProjectEditComponent } from './pages/projects/project-edit/project-edit.component';
+import { TaskEditComponent } from './components/task/task-edit/task-edit.component';
+import { TaskAddComponent } from './components/task/task-add/task-add.component';
 
 const routes: Routes = [
   {
@@ -49,6 +51,14 @@ const routes: Routes = [
     path: 'project/edit/:projectId',
     component: ProjectEditComponent,
     // canActivate: [AuthGuard],
+  },
+  {
+    path: 'project/:projectId/add-task',
+    component: TaskAddComponent,
+  },
+  {
+    path: 'project/:projectId/edit-task',
+    component: TaskEditComponent,
   }
 ];
 

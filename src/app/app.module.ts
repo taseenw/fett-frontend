@@ -35,6 +35,9 @@ import { ProjectAddComponent } from './pages/projects/project-add/project-add.co
 import { ProjectEditComponent } from './pages/projects/project-edit/project-edit.component';
 import { ProjectFormComponent } from './forms/project-form/project-form.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { TaskFormComponent } from './forms/task-form/task-form.component';
+import { TaskAddComponent } from './components/task/task-add/task-add.component';
+import { TaskEditComponent } from './components/task/task-edit/task-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +48,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     ProjectEditComponent,
     ProjectFormComponent,
     TaskComponent,
+    TaskFormComponent,
+    TaskAddComponent,
+    TaskEditComponent,
     ProjectComponent,
     NavBarComponent,
     FooterComponent,
