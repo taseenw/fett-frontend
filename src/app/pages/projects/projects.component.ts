@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { OnDestroy, OnInit, OnChanges } from '@angular/core';
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
