@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
-import { Task } from './task.model';
-import { Priority } from './task.model';
-import { Status } from './task.model';
+import { Component, Output } from '@angular/core';
+import { Task } from '../../models/task.model';
+import { Priority } from '../../models/task.model';
+import { Status } from '../../models/task.model';
+import { Input } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-task',
@@ -9,10 +11,15 @@ import { Status } from './task.model';
   styleUrl: './task.component.css'
 })
 export class TaskComponent {
+  @Input() passedTask: Task;
+  @Output() close: EventEmitter<void> = new EventEmitter<void>();
+
 
   task: Task;
+
   comment: string= '';
   comments = [];
+  assignees = [];
   dummyData: Task = {
     id: 34,
     parentTaskId: 12,
@@ -28,13 +35,18 @@ export class TaskComponent {
   constructor() { }
 
   ngOnInit() {
-    this.task = this.dummyData;
-    this.comments = this.task.comments;
+    console.log(this.passedTask);
+    this.comments = this.passedTask.comments;
+    this.assignees = this.passedTask.assignees;
   }
 
   uploadComment(inputComment: string) {
-    this.dummyData.comments.push(inputComment);
+    this.passedTask.comments.push(inputComment);
 
     this.comment = '';
+  }
+
+  onClose() {
+    this.close.emit();
   }
 }
