@@ -26,9 +26,14 @@
           <div class="card-body">
             <h5 class="card-title">Tasks</h5>
             <ul class="list-group">
-              <li class="list-group-item" *ngFor="let task of project.tasks">{{ task }}</li>
+              <div  *ngFor="let task of project.tasks">
+                <li class="list-group-item" (click) = "taskSideNav(task)">{{ task.name }}</li>
+              </div>
             </ul>
           </div>
         </div>
       </div>
+  </div>
+  <div *ngIf="selectedTask">
+    <app-task [passedTask] = "selectedTask" (close)="onCloseTask()"></app-task>
   </div>
