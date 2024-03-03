@@ -161,7 +161,6 @@ export class ProjectComponent {
   }
 
   getProjectData(email: string) {
-    // Fetch project data from backend
     // fetch(`http://localhost:8000/api/projects/${this.projectId}`, {
     //   method: 'GET',
     //   headers: {
