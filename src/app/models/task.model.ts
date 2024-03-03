@@ -9,6 +9,7 @@ export interface Task {
     dueDate: string;
     priority: Priority;
     comments: string[];
+    subtasks?: Task[];
     }
 
 export enum Priority {

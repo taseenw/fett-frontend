@@ -142,57 +142,77 @@ export class ProjectComponent {
 
   authProfile: any;
   email: string = null;
+  
   constructor(private route: ActivatedRoute, public auth: AuthService) {
     this.route.params.subscribe(params => {
       this.projectId = params['projectId'];
     });
   }
 
+  setCurrentEmail(email: string) {
+    console.log(email)
+    this.email = email;
+    // console.log("THIS IS THE ONE WE WANT" + this.email)
+  }
+
   ngOnInit() {
-//     this.auth.user$.subscribe( 
-//       (profile) => ((this.authProfile = profile), this.getProjectData(profile.email)));
-//     console.log(this.email);
+    this.auth.user$.subscribe( 
+      (profile) => ((this.authProfile = profile), this.getProjectData(profile.email)));
 
-    this.project = this.getProjectData(this.projectId);
-    let mainTasks = this.project.tasks.filter(x => x.parentTaskId === 1);
-
-    this.project.tasks = mainTasks;
 
   }
 
+  
+
   getProjectData(email: string) {
-    // fetch(`http://localhost:8000/api/projects/${this.projectId}`, {
-    //   method: 'GET',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   }
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //   // Handle the response data (list of users)
-    //   console.log(data);
-    //   this.project = data;
-    // }).catch(error => {
-    // // Handle any errors
-    // console.error('Error fetching users:', error);
-    // });
-    return this.dummyProject;
+    this.email = email;
+    // Fetch project data from backend
+    fetch(`http://localhost:8000/api/projects/${this.projectId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Handle the response data (list of users)
+      console.log(data);
+      this.project = data;
+    }).catch(error => {
+    // Handle any errors
+    console.error('Error fetching users:', error);
+    });
+    return null;
   }
 
   taskSideNav(task: Task) {
-    
     this.selectedTask = task;
-    this.currentSubTasks = this.dummyTasks.filter(x => x.parentTaskId === this.selectedTask.id);
-    if (this.currentSubTasks.length === 0) { 
+    if(this.selectedTask.subtasks.length == 0){
       this.showSideBar = true;
-    } else {
+
+
+    }
+    else {
       this.showSideBar = false;
       this.project.name = this.selectedTask.name;
       this.project.description = this.selectedTask.description;
       this.project.status = this.selectedTask.status;
       this.project.assignees = this.selectedTask.assignees;
-      this.project.tasks = this.currentSubTasks;
+      this.project.tasks = this.selectedTask.subtasks;
     }
+
+    // this.currentSubTasks = this.pri.filter(x => x.parentTaskId === this.selectedTask.id);
+    // if (this.currentSubTasks.length === 0) { 
+    //   this.showSideBar = true;
+    // } else {
+    //   this.showSideBar = false;
+    //   this.project.name = this.selectedTask.name;
+    //   this.project.description = this.selectedTask.description;
+    //   this.project.status = this.selectedTask.status;
+    //   this.project.assignees = this.selectedTask.assignees;
+    //   this.project.tasks = this.currentSubTasks;
+    // }
+
   }
 
   onCloseTask() {
@@ -201,17 +221,6 @@ export class ProjectComponent {
   }
 
   returnToParent() {
-    if (this.selectedTask.parentTaskId === 0) {
-      this.project = this.getProjectData(this.projectId);
-    } else {
-      this.selectedTask = this.dummyTasks.filter(x => x.id === this.selectedTask.parentTaskId)[0];
-      this.currentSubTasks = this.dummyTasks.filter(x => x.parentTaskId === this.selectedTask.id);
-      this.project.name = this.selectedTask.name;
-      this.project.description = this.selectedTask.description;
-      this.project.status = this.selectedTask.status;
-      this.project.assignees = this.selectedTask.assignees;
-      this.project.tasks = this.currentSubTasks;
-    }
+    this.getProjectData(this.email);
   }
-
 }
