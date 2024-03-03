@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Project } from 'src/app/models/project.model';
 import { Input } from '@angular/core';
+import { Status } from 'src/app/models/task.model';
+
 @Component({
   selector: 'app-project-form',
   templateUrl: './project-form.component.html',
@@ -46,7 +48,7 @@ export class ProjectFormComponent implements OnInit {
       id: '1',
       name: 'Dummy Project',
       description: 'This is a dummy project',
-      status: 'In Progress',
+      status: Status.InProgress,
       owner: 'John Doe',
       assignees: ['John Doe', 'Jane Doe'],
       tasks: []
