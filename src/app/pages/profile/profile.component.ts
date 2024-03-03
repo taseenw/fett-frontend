@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
+import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,13 +8,25 @@ import { AuthService } from '@auth0/auth0-angular';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  profileJson: string = null;
+  profileJson: any = null;
+  email: string = null;
+  authProfile: any;
 
-  constructor(public auth: AuthService) {}
+  constructor(public auth: AuthService, public usersService: UsersService) {}
 
   ngOnInit() {
     this.auth.user$.subscribe(
-      (profile) => (this.profileJson = JSON.stringify(profile, null, 2))
+      (profile) => ((this.authProfile = profile), this.fetchUserByEmail(profile.email))
     );
+
+  }
+ 
+  fetchUserByEmail(email: string): void {
+    this.usersService.getUserByEmail(email).subscribe(data => {
+      console.log('Fetched user by email:', data);
+      this.profileJson = data;
+    }, error => {
+      console.error('There was an error!', error);
+    });
   }
 }
