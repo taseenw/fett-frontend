@@ -13,35 +13,41 @@
 
 
     <div class="card-body">
-      <div class="row">
 
-        <div class="col-md-6">
-          <div class="form-floating mb-3">
-            <label for="firstname">First Name</label>
-            <input type="text" class="form-control" id="firstname" placeholder="Moussa">
+
+      <form (ngSubmit)="validSubmit()" [formGroup]="form" class="w-100">
+        <div class="row">
+          <div class="col-6"> <!-- Use 'col-6' to make the input take up half the width -->
+            <mat-form-field class="form-group w-100"> <!-- Use 'w-100' to make the mat-form-field fill its container -->
+              <mat-label>First Name</mat-label>
+              <input class="p-2" matInput id="firstname" placeholder="Moussa" formControlName="firstname" required>
+            </mat-form-field>
+          </div>
+          <div class="col-6"> <!-- Use 'col-6' to make the input take up half the width -->
+            <mat-form-field class="form-group w-100"> <!-- Use 'w-100' to make the mat-form-field fill its container -->
+              <mat-label>Last Name</mat-label>
+              <input class="p-2" matInput id="lastname" placeholder="Tawakol" formControlName="lastname" required>
+            </mat-form-field>
+          </div>
+          <div class="col-6"> <!-- Use 'col-6' to make the input take up half the width -->
+            <mat-form-field class="form-group w-100"> <!-- Use 'w-100' to make the mat-form-field fill its container -->
+              <mat-label>Phone</mat-label>
+              <input class="p-2" matInput placeholder="613-298-7890" id="phone" formControlName="phone" required>
+            </mat-form-field>
+          </div>
+          <div class="col-6"> <!-- Use 'col-6' to make the input take up half the width -->
+            <mat-form-field class="form-group w-100"> <!-- Use 'w-100' to make the mat-form-field fill its container -->
+              <mat-label>Email</mat-label>
+              <input class="p-2" matInput id="email" formControlName="email" readonly>
+            </mat-form-field>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="form-floating mb-3">
-            <label for="lastname">Last Name</label>
-            <input type="text" class="form-control" id="lastname" placeholder="Tawakol">
-          </div>
+
+        <div class="flex justify-content-end">
+          <button mat-button color="primary" type="submit">Save</button>
         </div>
-        <div class="col-md-6">
-          <div class="form-floating mb-3">
-            <label for="email">Email</label>
-            <input type="text" class="form-control" id="email" placeholder="moofymath@gmail.com">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-floating mb-3">
-            <label for="phone">Phone</label>
-            <input type="text" class="form-control" id="phone" placeholder="613-298-7980">
-          </div>
-        </div>
-      </div>
-   
+      </form>
+
     </div>
   </div>
 </div>
-

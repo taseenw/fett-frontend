@@ -22,6 +22,14 @@ export class UsersService {
     return this.http.post(this.baseUrl, {}, { headers });
   }
 
+   // Create a new user
+   updateUser(email: string, phone: string, firstname: string, lastname: string): Observable<any> {
+    // Assuming the email is sent as a header based on your provided code snippet
+    const headers = { email: email };
+    console.log('updating user')
+    return this.http.put(this.baseUrl, {phone:phone, fname:firstname, lname:lastname}, { headers });
+  }
+
   // Fetch a user by email
   getUserByEmail(email: string): Observable<any> {
     return this.http.get(`${this.baseUrl}/email/${email}`);

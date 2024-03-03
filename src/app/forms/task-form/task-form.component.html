@@ -1,1 +1,58 @@
-<p>task-form works!</p>
+<div class="container mt-5">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <h1>{{pageTitle}}</h1>
+        <hr>
+  
+        <form (ngSubmit)="validSubmit()" [formGroup]="tasksForm">
+  
+          <mat-form-field class="form-group">
+            <mat-label>Task Name</mat-label>
+            <input matInput id="name" formControlName="name" required>
+          </mat-form-field>
+  
+          <!-- Description -->
+          <mat-form-field class="form-group">
+            <mat-label>Description</mat-label>
+            <textarea matInput id="description" formControlName="description" rows="3" required></textarea>
+          </mat-form-field>
+  
+          <!-- Status -->
+          <mat-form-field class="form-group">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="status" required>
+              <mat-option value="Started">Started</mat-option>
+              <mat-option value="InProgress">In Progress</mat-option>
+              <mat-option value="QA">QA</mat-option>
+              <mat-option value="Completed">Completed</mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+          <!-- Assignees -->
+          <mat-form-field class="form-group">
+            <mat-label>Assignees - Separate by comma</mat-label>
+            <input matInput id="assignees" formControlName="assignees">
+          </mat-form-field>
+  
+          <!-- Due Date -->
+          <mat-form-field class="form-group">
+            <mat-label>Due Date</mat-label>
+            <input matInput id="dueDate" formControlName="dueDate" type="date" required>
+          </mat-form-field>
+  
+          <!-- Priority -->
+          <mat-form-field class="form-group">
+            <mat-label>Priority</mat-label>
+            <mat-select formControlName="priority" required>
+              <mat-option value="Low">Low</mat-option>
+              <mat-option value="Medium">Medium</mat-option>
+              <mat-option value="High">High</mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+          <button mat-button color="primary" type="submit" [disabled]="tasksForm.invalid">Submit</button>
+  
+        </form>
+      </div>
+    </div>
+  </div>
