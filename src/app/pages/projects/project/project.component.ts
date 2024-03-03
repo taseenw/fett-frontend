@@ -161,22 +161,23 @@ export class ProjectComponent {
   }
 
   getProjectData(email: string) {
-    // Fetch project data from backend
-    fetch(`http://localhost:8000/api/projects/${this.projectId}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    })
-    .then(response => response.json())
-    .then(data => {
-      // Handle the response data (list of users)
-      console.log(data);
-      this.project = data;
-    }).catch(error => {
-    // Handle any errors
-    console.error('Error fetching users:', error);
-    });
+    // // Fetch project data from backend
+    // fetch(`http://localhost:8000/api/projects/${this.projectId}`, {
+    //   method: 'GET',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   }
+    // })
+    // .then(response => response.json())
+    // .then(data => {
+    //   // Handle the response data (list of users)
+    //   console.log(data);
+    //   this.project = data;
+    // }).catch(error => {
+    // // Handle any errors
+    // console.error('Error fetching users:', error);
+    // });
+    return this.dummyProject;
   }
 
   taskSideNav(task: Task) {

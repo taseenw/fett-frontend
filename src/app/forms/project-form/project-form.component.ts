@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Project } from 'src/app/models/project.model';
 import { Input } from '@angular/core';
 import { Status } from 'src/app/models/task.model';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-project-form',
@@ -14,15 +15,16 @@ export class ProjectFormComponent implements OnInit {
   pageTitle: string;
   @Input() formType: string;
   projectToEdit: Project;
+  authProfile: any;
 
   
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private auth: AuthService) { }
   ngOnInit() {
     this.projectsForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
       status: ['', Validators.required],
-      owner: ['', Validators.required],
+      owner: [''],
       assignees: [''] // You can leave this empty or initialize with default value
     });
 
@@ -35,8 +37,13 @@ export class ProjectFormComponent implements OnInit {
   }
 
   validSubmit() {
+    this.auth.user$.subscribe( 
+      (profile) => ((this.authProfile = profile), this.submitForm(profile.email)));
+  }
+
+  submitForm(email:string) {
+    this.projectsForm.controls['owner'].setValue(email);
     if (this.projectsForm.valid) {
-      // Form is valid, you can access the form values using this.projectsForm.value
       const newProject: Project = this.projectsForm.value;
       // TODO: Add your logic to handle the new project (e.g., send it to the server)
       console.log('New Project:', newProject);
@@ -49,7 +56,7 @@ export class ProjectFormComponent implements OnInit {
       name: 'Dummy Project',
       description: 'This is a dummy project',
       status: Status.InProgress,
-      owner: 'John Doe',
+      owner: 'john@gmail.com',
       assignees: ['John Doe', 'Jane Doe'],
       tasks: []
     };
