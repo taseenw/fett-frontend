@@ -27,16 +27,7 @@
           <li class="nav-item" *ngIf="auth.isAuthenticated$ | async">
             <a routerLink="external-api" class="nav-link">External API</a>
           </li>
-          <li class="nav-item" *ngIf="auth.isAuthenticated$ | async">
-            <button
-              class="btn btn-link p-0"
-              style="min-width: unset"
-              id="qsLogoutBtn"
-              (click)="logout()"
-            >
-              Log out
-            </button>
-          </li>
+          
         </ul>
 
         <ul class="navbar-nav d-none d-md-block">
