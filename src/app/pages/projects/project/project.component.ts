@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Project } from 'src/app/models/project.model';
 import { Status, Priority, Task } from 'src/app/models/task.model';
 import { Input } from '@angular/core';
-
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-project',
@@ -140,13 +140,19 @@ export class ProjectComponent {
     tasks: this.dummyTasks
   };
 
-  constructor(private route: ActivatedRoute) {
+  authProfile: any;
+  email: string = null;
+  constructor(private route: ActivatedRoute, public auth: AuthService) {
     this.route.params.subscribe(params => {
       this.projectId = params['projectId'];
     });
   }
 
   ngOnInit() {
+//     this.auth.user$.subscribe( 
+//       (profile) => ((this.authProfile = profile), this.getProjectData(profile.email)));
+//     console.log(this.email);
+
     this.project = this.getProjectData(this.projectId);
     let mainTasks = this.project.tasks.filter(x => x.parentTaskId === 1);
 
@@ -154,8 +160,23 @@ export class ProjectComponent {
 
   }
 
-  getProjectData(projectId: string): Project {
-    return this.dummyProject;
+  getProjectData(email: string) {
+    // Fetch project data from backend
+    fetch(`http://localhost:8000/api/projects/${this.projectId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Handle the response data (list of users)
+      console.log(data);
+      this.project = data;
+    }).catch(error => {
+    // Handle any errors
+    console.error('Error fetching users:', error);
+    });
   }
 
   taskSideNav(task: Task) {

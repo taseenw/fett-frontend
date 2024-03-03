@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { OnDestroy, OnInit, OnChanges } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
+
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
@@ -28,14 +30,38 @@ export class ProjectsComponent {
       auth: 'View'
     }
   ];
-
-  constructor() { }
+  authProfile: any;
+  email: string = null;
+  constructor(public auth: AuthService) { }
 
   ngOnInit() {
-    this.projects = this.getProjects();
+    console.log("innit")
+    this.auth.user$.subscribe( 
+      (profile) => ((this.authProfile = profile), this.getProjects(profile.email)));
+    console.log(this.email);
   }
 
-  getProjects() {    
-    return this.dummyData;
+  getProjects(email:string) {    
+    //get the email
+    fetch(`http://localhost:8000/api/projects/getProjects`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'email' : email
+      },
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Handle the response data (list of users)
+      console.log(data);
+      console.log("hello")
+      this.projects = data;
+      
+    })
+    .catch(error => {
+      // Handle any errors
+      console.error('Error fetching users:', error);
+    });
+    this.projects = [];
   }
 }
