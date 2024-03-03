@@ -30,7 +30,7 @@ export class ProjectFormComponent implements OnInit {
       this.pageTitle = 'Edit Project';
       this.populateForm();
     } else {
-      this.pageTitle = 'Add New Project';
+      this.pageTitle = 'Create Project';
     }
   }
 

@@ -7,25 +7,30 @@
         <form (ngSubmit)="validSubmit()" [formGroup]="projectsForm">
 
           <mat-form-field class="form-group">
-            <mat-label>Project Name*</mat-label>
+            <mat-label>Project Name</mat-label>
             <input matInput id="name" formControlName="name" required>
           </mat-form-field>
     
           <!-- Description -->
           <mat-form-field class="form-group">
-            <mat-label>Description*</mat-label>
+            <mat-label>Description</mat-label>
             <textarea matInput id="description" formControlName="description" rows="3" required></textarea>
           </mat-form-field>
     
           <!-- Status -->
           <mat-form-field class="form-group">
-            <mat-label>Status*</mat-label>
-            <input matInput id="status" formControlName="status" required>
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="status" required>
+              <mat-option value="started">Started</mat-option>
+              <mat-option value="inProgress">In Progress</mat-option>
+              <mat-option value="qa">QA</mat-option>
+              <mat-option value="completed">Completed</mat-option>
+            </mat-select>
           </mat-form-field>
     
           <!-- Owner -->
           <mat-form-field class="form-group">
-            <mat-label>Owner*</mat-label>
+            <mat-label>Owner</mat-label>
             <input matInput id="owner" formControlName="owner" required>
           </mat-form-field>
     
