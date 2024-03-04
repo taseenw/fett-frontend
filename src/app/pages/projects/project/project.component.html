@@ -30,7 +30,11 @@
             <h2 class="card-title">Tasks</h2>
             <ul class="list-group">
               <div  *ngFor="let task of project.tasks">
-                <li class="list-group-item" (click) = "taskSideNav(task)">{{ task.name }}</li>
+                <li class="list-group-item" (click) = "taskSideNav(task)">
+                  <h3>{{ task.name }}</h3>
+                  <p class = "pl-4">STATUS: {{ task.status }}</p>
+                </li>
+
               </div>
             </ul>
           </div>
