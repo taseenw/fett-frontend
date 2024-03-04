@@ -1,5 +1,5 @@
 import { Component, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from 'src/app/models/project.model';
 import { Status, Priority, Task } from 'src/app/models/task.model';
 import { Input } from '@angular/core';
@@ -22,10 +22,10 @@ export class ProjectComponent {
   dummyData: Task = {
     id: 1,
     parentTaskId: 0,
-    name: 'Create NavBar',
-    description: 'This is a description for this task',
+    name: 'FETT Workflow Management Project',
+    description: 'This is a description for this project',
     assignees: ['fuadthabet@gmail.com', 'ericgersh@gmail.com', 'taseenwaseq@gmail.com'],
-    status: Status.InProgress,
+    status: Status.Started,
     dueDate: '2024-12-12', // YYYY-MM-DD
     priority: Priority.Medium,
     comments: ["Comment 1 i hate this so much -Fuad", "Comment 2 I love this so much -Eric", "Comment 3 I am indifferent -Taseen"]
@@ -140,18 +140,16 @@ export class ProjectComponent {
     tasks: this.dummyTasks
   };
 
-  constructor(private route: ActivatedRoute) {
-    this.route.params.subscribe(params => {
-      this.projectId = params['projectId'];
-    });
+
+  constructor(private route: ActivatedRoute, private router: Router) {
+    
   }
 
   ngOnInit() {
     this.project = this.getProjectData(this.projectId);
     let mainTasks = this.project.tasks.filter(x => x.parentTaskId === 1);
-
+    this.selectedTask = this.project.tasks.filter(x => x.id === 1)[0];
     this.project.tasks = mainTasks;
-
   }
 
   getProjectData(projectId: string): Project {
@@ -175,12 +173,18 @@ export class ProjectComponent {
   }
 
   onCloseTask() {
-    this.selectedTask = null;
     this.showSideBar = false;
+    this.returnToParent();
   }
 
   returnToParent() {
+    
+    if(this.showSideBar) {
+      this.showSideBar = false;
+    }
+
     if (this.selectedTask.parentTaskId === 0) {
+      this.router.navigate(['/projects']);
       this.project = this.getProjectData(this.projectId);
     } else {
       this.selectedTask = this.dummyTasks.filter(x => x.id === this.selectedTask.parentTaskId)[0];
